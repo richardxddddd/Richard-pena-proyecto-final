@@ -1,15 +1,30 @@
-import ListaProductos from './components/ListaProductos'
-import { adaptar } from './utils/adaptar.js'
-import { useEffect, useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import InicioPage from './pages/InicioPage'
 import ProductosPage from './pages/ProductosPage'
+import CarritoPage from './pages/CarritoPage'
+import NotFoundPage from './pages/NotFoundPage'
+import Navbar from './components/Navbar'
+
+
+
+
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Catalogo de Productos</h1>
-      <ProductosPage />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<InicioPage />} />
+        <Route path="/productos" element={<ProductosPage />} />
+        <Route path="/carrito" element={<CarritoPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </div>
   )
 }
 
 export default App
+
+
+        
