@@ -4,6 +4,7 @@ import ProductosPage from './pages/ProductosPage'
 import CarritoPage from './pages/CarritoPage'
 import NotFoundPage from './pages/NotFoundPage'
 import Navbar from './components/Navbar'
+import DetallePage from './pages/DetallePage'
 
 
 
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<InicioPage />} />
         <Route path="/productos" element={<ProductosPage />} />
+        <Route path="/productos/:id" element={<DetallePage />} />
         <Route path="/carrito" element={<CarritoPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useFetch } from '../hooks/usefetch.js'
+import { useFetch } from '../hooks/useFetch.js'
 import { adaptar } from '../utils/adaptar.js'
 import ListaProductos from '../components/ListaProductos'
 import Buscador from '../components/Buscador'
