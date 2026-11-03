@@ -1,11 +1,22 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { CarritoContext } from '../context/CarritoContext'
 import ItemCarrito from '../components/ItemCarrito'
 
 function CarritoPage() {
   const { carrito, eliminar, restar, sumar, vaciar } = useContext(CarritoContext)
+  const [nota, setNota] = useState('')
+  const [notaGuardada, setNotaGuardada] = useState('')
   const totalItems = carrito.reduce((suma, item) => suma + item.cantidad, 0)
   const total = carrito.reduce((suma, item) => suma + item.precio * item.cantidad, 0)
+
+  function manejarEnvio(e) {
+    e.preventDefault()
+    const notaLimpia = nota.trim()
+    if (!notaLimpia) return
+
+    setNotaGuardada(notaLimpia)
+    setNota('')
+  }
 
   if (carrito.length === 0) {
     return <p className="carrito-vacio">Tu carrito está vacío</p>
@@ -40,6 +51,16 @@ function CarritoPage() {
           <button className="carrito-resumen__vaciar" onClick={vaciar}>
             Vaciar carrito
           </button>
+          <form onSubmit={manejarEnvio}>
+            <input
+              type="text"
+              placeholder="Nota para tu pedido"
+              value={nota}
+              onChange={(e) => setNota(e.target.value)}
+            />
+            <button type="submit">Guardar nota</button>
+          </form>
+          {notaGuardada ? <p>{notaGuardada}</p> : null}
         </aside>
       </div>
     </>
