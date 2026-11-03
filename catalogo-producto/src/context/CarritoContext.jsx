@@ -22,10 +22,31 @@ export function CarritoProvider({ children }) {
 		setCarrito((prev) => prev.filter((item) => item.id !== id));
 	};
 
+	const sumar = (id) => {
+		setCarrito((prev) =>
+			prev.map((item) =>
+				item.id === id ? { ...item, cantidad: item.cantidad + 1 } : item
+			)
+		);
+	};
+
+	const restar = (id) => {
+		setCarrito((prev) =>
+			prev
+				.map((item) =>
+					item.id === id ? { ...item, cantidad: item.cantidad - 1 } : item
+				)
+				.filter((item) => item.cantidad > 0)
+		);
+	};
+
+	const vaciar = () => {
+		setCarrito([]);
+	};
+
 	return (
-		<CarritoContext.Provider value={{ carrito, agregar, eliminar }}>
+		<CarritoContext.Provider value={{ carrito, agregar, eliminar, sumar, restar, vaciar }}>
 			{children}
 		</CarritoContext.Provider>
 	);
 }
-
